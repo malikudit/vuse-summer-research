@@ -5,6 +5,10 @@ Prerequisites:
 - Spring Boot
 - PostgreSQL
 - Maven
+- Angular 12
+- Angular HttpClient
+- Angular Router
+- Bootstrap 4
 
 Setup:
 1. Clone the repository to a local directory with the command:
@@ -30,3 +34,6 @@ mvn spring-boot:run
 $ sudo su postgres
 $ psql
 $ \d workflows
+
+7. To run the Angular web client for the app, avigate to the angularclient folder and run:
+ng serve --port 8081
