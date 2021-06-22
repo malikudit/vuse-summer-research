@@ -33,3 +33,8 @@ npm install bootstrap
 
 # Install PostgreSQL
 apt install postgresql postgresql-contrib
+
+# Update everything and install more dependencies.
+npm update
+ng update
+npm install --save-dev @angular-devkit/build-angular
