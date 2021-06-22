@@ -1,0 +1,35 @@
+#!/bin/bash
+# This script will install dependencies.
+# Pull this file down, make it executable and run it with sudo.
+# 
+# chmod u+x bootstrap.sh
+# sudo ./bootstrap.sh
+# 
+
+if [ $(id -u) != "0" ]; then
+echo "You must be the superuser to run this script" >&2
+exit 1
+fi
+apt-get update
+
+# Install curl
+apt-get -y install curl
+
+# Install Java
+apt install -y default-jdk
+
+# Install Maven
+apt-get install -y maven
+
+# Install NodeJS
+curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
+apt-get -y install nodejs
+
+# Install Angular
+npm install -g @angular/cli
+
+# Install Bootstrap
+npm install bootstrap
+
+# Install PostgreSQL
+apt install postgresql postgresql-contrib
