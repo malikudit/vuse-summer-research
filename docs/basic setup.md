@@ -1,6 +1,6 @@
 Reproducting the API's functionality:
 
-Prerequisites:
+Requirements and dependencies:
 - Java 8
 - Spring Boot
 - PostgreSQL
