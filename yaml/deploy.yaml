@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: crudapp
+spec:
+  containers:
+  - name: crudapp
+    image: crudapp:latest
+    imagePullPolicy: Never
+    resources:
+      limits:
+        memory: "200Mi"
