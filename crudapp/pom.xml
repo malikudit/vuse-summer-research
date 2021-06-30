@@ -37,13 +37,6 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-
-		<dependency>
-			<groupId>io.argoproj.workflow</groupId>
-			<artifactId>argo-client-java</artifactId>
-			<version>v3.1.0</version>
-			<scope>compile</scope>
-		  </dependency>
 		  
 	</dependencies>
 

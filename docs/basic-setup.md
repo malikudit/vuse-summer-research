@@ -12,7 +12,7 @@ Requirements and dependencies:
 
 Setup:
 1. Clone the repository to a local directory with the command:
-git clone https://github.com/malikudit/vuse-summer-research.git
+$ git clone https://github.com/malikudit/vuse-summer-research.git
 
 2. cd into src/main/resources, and open the application.properties file.
 
@@ -36,4 +36,4 @@ $ psql
 $ \d workflows
 
 7. To run the Angular web client for the app, avigate to the angularclient folder and run:
-ng serve --port 8081
+$ ng serve --port 8081
