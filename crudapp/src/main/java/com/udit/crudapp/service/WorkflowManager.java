@@ -3,11 +3,26 @@ package com.udit.crudapp.service;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Scanner;
 
 public class WorkflowManager {
     public static void main(String[] args) throws Exception {
+        Scanner userInputCommand = new Scanner(System.in);
+        System.out.println("Enter workflow command! Options include submit, terminate, list, and suspend.");
+    
+        String userCommand = userInputCommand.nextLine(); 
+        System.out.println("The selected command is: " + userCommand); 
+
+        userInputCommand.close();
+
+        String finalCommand = "argo " + userCommand + " -n argo " + "https://raw.githubusercontent.com/argoproj/argo-workflows/master/examples/hello-world.yaml";
+        System.out.println(finalCommand);
+    }
+
+    public void commandSubmit(String finalCommand) {
         ProcessBuilder processBuilder = new ProcessBuilder();
-        processBuilder.command("bash", "-c", "argo submit -n argo https://raw.githubusercontent.com/argoproj/argo-workflows/master/examples/hello-world.yaml");
+        processBuilder.command("bash", "-c", finalCommand);
+
         try {
             Process process = processBuilder.start();
             StringBuilder output = new StringBuilder();

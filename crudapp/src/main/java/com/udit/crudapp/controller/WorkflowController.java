@@ -34,17 +34,19 @@ public class WorkflowController {
 		try {
 			List<Workflow> workflows = new ArrayList<Workflow>();
 
-			if (name == null)
+			if (name == null) {
 				workflowRepository.findAll().forEach(workflows::add);
-			else
+			}
+			else {
 				workflowRepository.findByNameContaining(name).forEach(workflows::add);
-
+			}
 			if (workflows.isEmpty()) {
 				return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 			}
 
 			return new ResponseEntity<>(workflows, HttpStatus.OK);
-		} catch (Exception e) {
+		} 
+		catch (Exception e) {
 			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
@@ -55,7 +57,8 @@ public class WorkflowController {
 
 		if (workflowData.isPresent()) {
 			return new ResponseEntity<>(workflowData.get(), HttpStatus.OK);
-		} else {
+		} 
+		else {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 	}
@@ -63,10 +66,10 @@ public class WorkflowController {
 	@PostMapping("/workflows")
 	public ResponseEntity<Workflow> createWorkflow(@RequestBody Workflow workflow) {
 		try {
-			Workflow _workflow = workflowRepository
-					.save(new Workflow(workflow.getName(), workflow.getDescription(), false));
+			Workflow _workflow = workflowRepository.save(new Workflow(workflow.getName(), workflow.getDescription(), false));
 			return new ResponseEntity<>(_workflow, HttpStatus.CREATED);
-		} catch (Exception e) {
+		} 
+		catch (Exception e) {
 			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
@@ -81,7 +84,8 @@ public class WorkflowController {
 			_workflow.setDescription(workflow.getDescription());
 			_workflow.setCompleted(workflow.isCompleted());
 			return new ResponseEntity<>(workflowRepository.save(_workflow), HttpStatus.OK);
-		} else {
+		} 
+		else {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 	}
@@ -91,7 +95,8 @@ public class WorkflowController {
 		try {
 			workflowRepository.deleteById(id);
 			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-		} catch (Exception e) {
+		} 
+		catch (Exception e) {
 			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
@@ -101,7 +106,8 @@ public class WorkflowController {
 		try {
 			workflowRepository.deleteAll();
 			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-		} catch (Exception e) {
+		} 
+		catch (Exception e) {
 			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 
@@ -111,12 +117,12 @@ public class WorkflowController {
 	public ResponseEntity<List<Workflow>> findByCompleted() {
 		try {
 			List<Workflow> workflows = workflowRepository.findByCompleted(true);
-
 			if (workflows.isEmpty()) {
 				return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 			}
 			return new ResponseEntity<>(workflows, HttpStatus.OK);
-		} catch (Exception e) {
+		} 
+		catch (Exception e) {
 			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
