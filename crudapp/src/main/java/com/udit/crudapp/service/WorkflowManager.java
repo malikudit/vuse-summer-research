@@ -6,6 +6,7 @@ import java.io.InputStreamReader;
 import java.util.Scanner;
 
 public class WorkflowManager {
+
     public static void main(String[] args) throws Exception {
         Scanner userInputCommand = new Scanner(System.in);
         System.out.println("Enter workflow command! Options include submit, terminate, list, and suspend.");
@@ -13,13 +14,18 @@ public class WorkflowManager {
         String userCommand = userInputCommand.nextLine(); 
         System.out.println("The selected command is: " + userCommand); 
 
+        String workflowName = userInputCommand.nextLine();
+        System.out.println("The selected workflow is: " + workflowName);
+
         userInputCommand.close();
 
-        String finalCommand = "argo " + userCommand + " -n argo " + "https://raw.githubusercontent.com/argoproj/argo-workflows/master/examples/hello-world.yaml";
+        String finalCommand = "argo " + userCommand + " -n argo " + "http://localhost:8080/api/download/" + workflowName + ".yml";
         System.out.println(finalCommand);
+
+        commandSubmit(finalCommand);
     }
 
-    public void commandSubmit(String finalCommand) {
+    public static void commandSubmit(String finalCommand) {
         ProcessBuilder processBuilder = new ProcessBuilder();
         processBuilder.command("bash", "-c", finalCommand);
 
