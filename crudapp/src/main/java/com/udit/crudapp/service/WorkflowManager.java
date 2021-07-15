@@ -27,6 +27,8 @@ public class WorkflowManager {
             System.out.println("The selected workflow is: " + workflowName);
             workflows.add(workflowName);
 
+
+            
             System.out.println("Do you want to add another workflow? y/n");
             checkInput = userInputCommand.nextLine();
             if (checkInput == "y" || checkInput == "Y") {
