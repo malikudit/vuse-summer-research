@@ -35,5 +35,6 @@ $ sudo su postgres
 $ psql
 $ \d workflows
 
-7. To run the Angular web client for the app, avigate to the angularclient folder and run:
+7. To run the Angular web client for the app, install the following dependency and then navigate to the angularclient folder and run:
+$ npm install --save-dev @angular-devkit/build-angular
 $ ng serve --port 8081
