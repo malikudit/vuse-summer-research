@@ -3,6 +3,7 @@ package com.udit.crudapp.controller;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.io.PrintWriter;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -20,6 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.udit.crudapp.model.Workflow;
 import com.udit.crudapp.repository.WorkflowRepository;
+;
 
 @CrossOrigin(origins = "http://localhost:8081")
 @RestController
@@ -67,6 +69,13 @@ public class WorkflowController {
 	public ResponseEntity<Workflow> createWorkflow(@RequestBody Workflow workflow) {
 		try {
 			Workflow _workflow = workflowRepository.save(new Workflow(workflow.getName(), workflow.getDescription(), false));
+
+			String filename = "workflows/" + workflow.getName() + ".yml";
+			PrintWriter out = new PrintWriter(filename);
+			out.println(workflow.getDescription());
+			out.close();
+			// call function
+
 			return new ResponseEntity<>(_workflow, HttpStatus.CREATED);
 		} 
 		catch (Exception e) {

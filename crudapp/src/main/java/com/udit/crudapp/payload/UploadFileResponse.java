@@ -13,7 +13,7 @@ public class UploadFileResponse {
         this.size = size;
     }
 
-	public String getFileName() {
+    public String getFileName() {
         return fileName;
     }
 

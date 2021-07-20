@@ -17,10 +17,10 @@ function uploadSingleFile(file) {
     var xhr = new XMLHttpRequest();
     xhr.open("POST", "/api/upload");
 
-    xhr.onload = function() {
+    xhr.onload = function () {
         console.log(xhr.responseText);
         var response = JSON.parse(xhr.responseText);
-        if(xhr.status == 200) {
+        if (xhr.status == 200) {
             singleFileUploadError.style.display = "none";
             singleFileUploadSuccess.innerHTML = "<p>Workflow uploaded!</p>";
             singleFileUploadSuccess.style.display = "block";
@@ -35,17 +35,17 @@ function uploadSingleFile(file) {
 
 function uploadMultipleFiles(files) {
     var formData = new FormData();
-    for(var index = 0; index < files.length; index++) {
+    for (var index = 0; index < files.length; index++) {
         formData.append("files", files[index]);
     }
 
     var xhr = new XMLHttpRequest();
     xhr.open("POST", "/api/uploadMultiple");
 
-    xhr.onload = function() {
+    xhr.onload = function () {
         console.log(xhr.responseText);
         var response = JSON.parse(xhr.responseText);
-        if(xhr.status == 200) {
+        if (xhr.status == 200) {
             multipleFileUploadError.style.display = "none";
             var content = "<p>Workflows uploaded!</p>";
             multipleFileUploadSuccess.innerHTML = content;
@@ -59,9 +59,9 @@ function uploadMultipleFiles(files) {
 }
 
 
-singleUploadForm.addEventListener('submit', function(event){
+singleUploadForm.addEventListener('submit', function (event) {
     var files = singleFileUploadInput.files;
-    if(files.length === 0) {
+    if (files.length === 0) {
         singleFileUploadError.innerHTML = "Please select a workflow!";
         singleFileUploadError.style.display = "block";
     }
@@ -70,9 +70,9 @@ singleUploadForm.addEventListener('submit', function(event){
 }, true);
 
 
-multipleUploadForm.addEventListener('submit', function(event){
+multipleUploadForm.addEventListener('submit', function (event) {
     var files = multipleFileUploadInput.files;
-    if(files.length === 0) {
+    if (files.length === 0) {
         multipleFileUploadError.innerHTML = "Please select at least one workflow!";
         multipleFileUploadError.style.display = "block";
     }

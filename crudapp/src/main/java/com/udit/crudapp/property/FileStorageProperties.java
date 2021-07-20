@@ -14,4 +14,3 @@ public class FileStorageProperties {
         this.uploadDir = uploadDir;
     }
 }
-
