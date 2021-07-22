@@ -21,7 +21,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.udit.crudapp.model.Workflow;
 import com.udit.crudapp.repository.WorkflowRepository;
-;
 
 @CrossOrigin(origins = "http://localhost:8081")
 @RestController
@@ -38,8 +37,7 @@ public class WorkflowController {
 
 			if (name == null) {
 				workflowRepository.findAll().forEach(workflows::add);
-			}
-			else {
+			} else {
 				workflowRepository.findByNameContaining(name).forEach(workflows::add);
 			}
 			if (workflows.isEmpty()) {
@@ -47,8 +45,7 @@ public class WorkflowController {
 			}
 
 			return new ResponseEntity<>(workflows, HttpStatus.OK);
-		} 
-		catch (Exception e) {
+		} catch (Exception e) {
 			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
@@ -59,8 +56,7 @@ public class WorkflowController {
 
 		if (workflowData.isPresent()) {
 			return new ResponseEntity<>(workflowData.get(), HttpStatus.OK);
-		} 
-		else {
+		} else {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 	}
@@ -68,7 +64,12 @@ public class WorkflowController {
 	@PostMapping("/workflows")
 	public ResponseEntity<Workflow> createWorkflow(@RequestBody Workflow workflow) {
 		try {
-			Workflow _workflow = workflowRepository.save(new Workflow(workflow.getName(), workflow.getDescription(), false));
+			Workflow _workflow = workflowRepository
+					.save(new Workflow(workflow.getName(), workflow.getDescription(), false));
+
+			// file uploader
+
+			// workflow manager
 
 			String filename = "workflows/" + workflow.getName() + ".yml";
 			PrintWriter out = new PrintWriter(filename);
@@ -77,8 +78,7 @@ public class WorkflowController {
 			// call function
 
 			return new ResponseEntity<>(_workflow, HttpStatus.CREATED);
-		} 
-		catch (Exception e) {
+		} catch (Exception e) {
 			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
@@ -93,8 +93,7 @@ public class WorkflowController {
 			_workflow.setDescription(workflow.getDescription());
 			_workflow.setCompleted(workflow.isCompleted());
 			return new ResponseEntity<>(workflowRepository.save(_workflow), HttpStatus.OK);
-		} 
-		else {
+		} else {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 	}
@@ -104,8 +103,7 @@ public class WorkflowController {
 		try {
 			workflowRepository.deleteById(id);
 			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-		} 
-		catch (Exception e) {
+		} catch (Exception e) {
 			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
@@ -115,8 +113,7 @@ public class WorkflowController {
 		try {
 			workflowRepository.deleteAll();
 			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-		} 
-		catch (Exception e) {
+		} catch (Exception e) {
 			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 
@@ -130,8 +127,7 @@ public class WorkflowController {
 				return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 			}
 			return new ResponseEntity<>(workflows, HttpStatus.OK);
-		} 
-		catch (Exception e) {
+		} catch (Exception e) {
 			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}

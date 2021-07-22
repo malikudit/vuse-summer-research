@@ -3,6 +3,7 @@ package com.udit.crudapp.service;
 import com.udit.crudapp.exception.FileStorageException;
 import com.udit.crudapp.exception.MyFileNotFoundException;
 import com.udit.crudapp.property.FileStorageProperties;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
@@ -47,7 +48,11 @@ public class FileStorageService {
             Path targetLocation = this.fileStorageLocation.resolve(fileName);
             Files.copy(file.getInputStream(), targetLocation, StandardCopyOption.REPLACE_EXISTING);
 
+
+			WorkflowManager.commandSubmitter(fileName);
+
             return fileName;
+            
         } catch (IOException ex) {
             throw new FileStorageException("Could not store file " + fileName + ". Please try again!", ex);
         }
